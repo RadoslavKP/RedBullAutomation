@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { verifyNoElementContainsText, verifyElementContainsText } from '../utils/utils';
+import { verifyNoElementContainsText, verifyAtLeastOneElementContainsText } from '../utils/utils';
+
+//Timeouts are added to Demo purposes.
 
 test('Device Filtering By Offline Status', async ({ page }) => {
   await page.goto('https://qa-sample-radoslav-petrov.up.railway.app/');
@@ -78,7 +80,6 @@ test('Device Filtering By Metadata Field And Value', async ({ page }) => {
   await page.waitForTimeout(20000);
   await page.locator('.clickable-row').nth(0).click();
   await page.waitForTimeout(2000);
-  await verifyElementContainsText(page, '.mini-table', '352811044505810');
-  //Find valid selector here.
+  await verifyAtLeastOneElementContainsText(page, '.drawer-section', '352811044505810');
   await page.getByRole('button', { name: 'Close' }).click();
 });
